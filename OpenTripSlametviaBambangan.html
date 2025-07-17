@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Open Trip Slamet via Bambangan - Langit Biru Adventure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #006184;
+            padding: 16px;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            width: 154px;
+            height: 72px;
+            border-radius: 36px;
+        }
+
+        .nav-menu {
+            display: none;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .login-text {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 17px;
+        }
+
+        .contact-btn {
+            background: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 16px 28px 16px 54px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 20px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-btn::before {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background-image: url('assets/images/img_svg.svg');
+            background-size: contain;
+            position: absolute;
+            left: 28px;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 32px;
+            margin-top: 70px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 52px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trip-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 38px;
+            color: #1b1f4d;
+            margin-bottom: 32px;
+        }
+
+        .trip-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-label {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 20px;
+            color: #006184;
+            min-width: 120px;
+        }
+
+        .detail-colon {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 20px;
+            color: #0164c9;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #006184;
+        }
+
+        .description-title {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 23px;
+            color: #1b1f4d;
+            margin: 32px 0 16px 0;
+        }
+
+        .description-text {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 18px;
+            color: #58585a;
+            margin-bottom: 32px;
+        }
+        
+        .dropdown-section {
+            margin-bottom: 24px; /* Menambah jarak antar dropdown */
+        }
+
+        .section-title, .section-heading {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 23px;
+            color: #1b1f4d;
+        }
+
+        .section-subtitle, .dropdown-description {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #58585a;
+            margin-bottom: 8px;
+        }
+
+        .dropdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 22px 6px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background-color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 17px;
+            color: #1f2937;
+        }
+
+        .dropdown::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background-image: url('assets/images/img_arrowdown.svg');
+            background-size: contain;
+        }
+        
+        .dropdown-content {
+            padding-left: 20px;
+            padding-top: 10px;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #eeeeee;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            margin-top: 32px;
+        }
+
+        .pricing-table {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-top: 42px;
+            overflow: hidden;
+        }
+
+        .pricing-row {
+            display:inline-block;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .pricing-row:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-pax {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 17px;
+            color: #1c1c1e;
+        }
+
+        .pricing-amount {
+            background-color: #f1f5f9;
+            border-radius: 12px;
+            padding: 4px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 17px;
+            color: #1c1c1e;
+        }
+
+        .pricing-location {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 17px;
+            color: #1c1c1e;
+        }
+
+        .book-button {
+            width: 100%;
+            background-color: #006184;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 34px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 17px;
+            cursor: pointer;
+            margin-top: 28px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            padding: 32px 16px;
+            margin-top: 112px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            width: 106px;
+            height: 104px;
+            border-radius: 52px;
+        }
+
+        .footer-info {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-social-text {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 17px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .copyright {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 16px;
+            margin-top: 22px;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 60px;
+            right: 58px;
+            width: 56px;
+            height: 56px;
+            background-color: #009b62;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .chat-button img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 22px;
+            }
+
+            .pricing-row {
+                padding: 18px 24px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+
+            .main-content {
+                padding: 32px;
+            }
+
+            .content-wrapper {
+                flex-direction: row;
+                gap: 64px;
+            }
+
+            .left-content {
+                flex: 1;
+            }
+
+            .right-content {
+                width: 46%;
+            }
+
+            .trip-header h1 {
+                font-size: 49px;
+                line-height: 58px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: row;
+                justify-content: space-between;
+                flex: 1;
+                margin-left: 28px;
+            }
+
+            .footer-nav {
+                flex-direction: row;
+                gap: 32px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .header {
+                padding: 16px 32px;
+            }
+
+            .main-content {
+                padding: 70px 32px 0;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .header {
+                padding: 16px 56px;
+            }
+
+            .main-content {
+                padding: 70px 56px 0;
+            }
+        }
+    </style>
+    <script src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fberkelana5157back.builtwithrocket.new&amp;_be=https%3A%2F%2Fapplication.rocket.new&amp;_v=0.1.5" type="module"></script>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; gap: 34px;">
+                <img alt="Langit Biru Adventure" class="logo" src="assets/images/img_whatsapp_image_2025_06_27.png"/>
+                <nav class="nav-menu">
+                    <a href="DaftarTrip.html">Daftar Trip</a>
+                    <a href="Galeri.html">Galeri</a>
+                    <a href="TentangKami.html">Tentang Kami</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <button class="contact-btn">Hubungi Kami</button>
+            </div>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="content-wrapper">
+            <div class="left-content">
+                <div class="trip-header">
+                    <h1>Open Trip Slamet<br/>via Bambangan</h1>
+                </div>
+                <div class="trip-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Titik Kumpul</span>
+                        <span class="detail-colon">:</span>
+                        <span class="detail-value">Jogja, Jakarta, &amp; Basecamp Bambangan</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tanggal Trip</span>
+                        <span class="detail-colon">:</span>
+                        <span class="detail-value">25 –27 November 2025</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Kapasitas</span>
+                        <span class="detail-colon">:</span>
+                        <span class="detail-value">21 Peserta</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Jenis Trip</span>
+                        <span class="detail-colon">:</span>
+                        <span class="detail-value">Open Trip Pendakian (2 hari 1 malam)</span>
+                    </div>
+                </div>
+                <h2 class="description-title">Deskripsi</h2>
+                <p class="description-text">
+                    Gunung Slamet adalah gunung tertinggi di Jawa Tengah dengan jalur pendakian yang menantang dan pemandangan yang luar biasa. Melalui jalur Bambangan yang ikonik, kamu akan diajak menembus hutan tropis, menyusuri pos demi pos, hingga mencapai puncak dengan latar sunrise dan lautan awan yang menggetarkan.<br/><br/>
+
+                    Bersama Langit Biru Adventure, kamu tidak perlu repot urusan logistik. Semua kami siapkan: mulai dari transportasi nyaman dari Jogja dan Jakarta, dokumentasi lengkap foto &amp; video (bahkan drone!), hingga logistik pendakian yang aman dan praktis. Open trip ini cocok untuk kamu yang ingin merasakan pendakian Gunung Slamet tanpa ribet, dengan teman baru dan suasana akrab.<br/><br/>
+
+                    Kapan lagi bisa ke Slamet bareng tim asik, lengkap, dan aman seperti ini?
+                </p>
+
+                <div class="dropdown-section">
+                    <h2 class="section-title">Fasilitas</h2>
+                    <p class="section-subtitle">Kami menyediakan berbagai fasilitas untuk anda</p>
+                    <div class="dropdown" onclick="toggleDropdown(this)">
+                        <span class="dropdown-text">Tampilkan</span>
+                    </div>
+                    <div class="dropdown-content" id="fasilitas" style="display: none;">
+                        <ul>
+                            <li>Transportasi AC dari titik kumpul</li>
+                            <li>Pemandu berpengalaman</li>
+                            <li>Peralatan camping lengkap</li>
+                            <li>Makan 5x Selama Trip</li>
+                            <li>Alat Makan & Minum (free to use)</li>
+                            <li>Alat Masak (free to use )</li>
+                            <li>Simaksi online dan offline</li>
+                            <li>Ojek Pendakian saat berangkat</li>
+                            <li>Tenda Sesuai Kapasitas</li>
+                            <li>logistik</li>
+                            <li>Sup Buah</li>
+                            <li>Cemilan Pisang Goreng</li>
+                            <li>Cemilan Cireng</li>
+                            <li>Tenda Toilet</li>
+                            <li>Rumah Singgah</li>
+                            <li>Kebersihan BC</li>
+                            <li>Dekorasi Camp</li>
+                            <li>Dokumentasi profesional</li>
+                            <li>P3K Standar</li>
+                            <li>Sertifikat pendakian</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dropdown-section">
+                    <h2 class="section-heading">Destinasi</h2>
+                    <p class="dropdown-description">Nikmati destinasi-destinasi pilihan untuk anda</p>
+                    <div class="dropdown" onclick="toggleDropdown(this)">
+                        <span class="dropdown-text">Tampilkan</span>
+                    </div>
+                    <div class="dropdown-content" id="destinasi" style="display: none;">
+                        <ul>
+                            <li>Basecamp Bambangan (1.300 mdpl)</li>
+                            <li>Pos 1 – Pondok Gede, jalur perkebunan & hutan pinus</li>
+                            <li>Pos 2 – Pondok Lembu, kontur mulai menanjak & vegetasi rapat</li>
+                            <li>Pos 3 – Pondok Cemara, tempat istirahat dikelilingi cemara gunung</li>
+                            <li>Pos 4 – Pondok Watu, jalur berbatu dan curam</li>
+                            <li>Pos 5 – Samaranthu, cocok untuk camp, suhu dingin</li>
+                            <li>Pos 6 – Samyang Rangkah, mendekati batas vegetasi</li>
+                            <li>Pos 7 – Plawangan, sunrise spot & batas vegetasi (2.980 mdpl)</li>
+                            <li>Summit – Puncak Slamet (3.428 mdpl)</li>
+                            <li>Kawah Slamet – Medan berbatu, view luas, dan bau belerang</li>
+                        </ul>
+                    </div>                    
+                </div>
+                <div class="dropdown-section">
+                    <h2 class="section-heading">Itinerary</h2>
+                    <p class="dropdown-description">Rangkaian dan jadwal trip</p>
+                    <div class="dropdown" onclick="toggleDropdown(this)">
+                        <span class="dropdown-text">Tampilkan</span>
+                    </div>
+                    <div class="dropdown-content" id="itinerary" style="display: none;">
+                        <div>
+                            <h4>Hari 1:</h4>
+                            <p>07:00 - Berangkat menuju Basecamp Bambangan, Purbalingga</p>
+                            <p>11:00 - Tiba di basecamp, registrasi & makan siang</p>
+                            <p>13:00 - Istirahat atau aklimatisasi ringan</p>
+                            <p>15:00 - Persiapan perlengkapan & logistik</p>
+                            <p>18:00 - Makan malam di basecamp</p>
+                            <p>20:00 - Istirahat malam di basecamp</p>
+                            <br/>
+                            <h4>Hari 2:</h4>
+                            <p>05:00 - Persiapan pendakian & sarapan</p>
+                            <p>06:00 - Mulai pendakian menuju Pos 1</p>
+                            <p>09:00 - Istirahat di Pos 3 (Pondok Cemara)</p>
+                            <p>12:00 - Tiba di Pos 5 atau Pos 6, makan siang ringan</p>
+                            <p>14:00 - Camp di sekitar Pos 7 (Plawangan)</p>
+                            <p>17:30 - Menikmati sunset dari Plawangan</p>
+                            <p>19:00 - Makan malam & briefing summit</p>
+                            <p>20:00 - Istirahat maksimal sebelum summit</p>
+                            <br/>
+                            <h4>Hari 3:</h4>
+                            <p>02:00 - Bangun & persiapan summit attack</p>
+                            <p>02:30 - Trek summit via jalur pasir dan batu lepas</p>
+                            <p>05:00 - Sunrise di Puncak Slamet (3.428 mdpl)</p>
+                            <p>06:00 - Turun kembali ke tenda di Plawangan</p>
+                            <p>08:00 - Sarapan, packing & bersih diri</p>
+                            <p>10:00 - Turun ke basecamp Bambangan</p>
+                            <p>14:00 - Tiba di basecamp, istirahat & bersih-bersih</p>
+                            <p>15:00 - Perjalanan pulang ke kota asal</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="right-content">
+                <div class="gallery-section">
+                    <h3 class="section-title">Gallery</h3>
+                    <div class="gallery-grid">
+                        <img alt="Gallery 1" class="gallery-item" src="assets/images/img_01jt8p0nrmzsh6f.png"/>
+                        <img alt="Gallery 2" class="gallery-item" src="assets/images/img_01jt8p0qkz41nby.png"/>
+                        <img alt="Gallery 3" class="gallery-item" src="assets/images/img_01jt8p0qdx89z50.png"/>
+                        <img alt="Gallery 4" class="gallery-item" src="assets/images/img_01jt8p0q5hcjg1n.png"/>
+                        <img alt="Gallery 5" class="gallery-item" src="assets/images/img_01jt8p0pz8bxtfs.png"/>
+                        <img alt="Gallery 6" class="gallery-item" src="assets/images/img_01jt8p0pqm2c3a3.png"/>
+                        <img alt="Gallery 7" class="gallery-item" src="assets/images/img_01jt8p0pg3k4bfd.png"/>
+                        <img alt="Gallery 8" class="gallery-item" src="assets/images/img_01jt8p0p7zbax16.png"/>
+                        <img alt="Gallery 9" class="gallery-item" src="assets/images/img_01jt8p0p0w6rjpq.png"/>
+                        <img alt="Gallery 10" class="gallery-item" src="assets/images/img_01jt8p0nga0dvbn.png"/>
+                        <img alt="Gallery 11" class="gallery-item" src="assets/images/img_01jt8p0n9mk6xew.png"/>
+                        <img alt="Gallery 12" class="gallery-item" src="assets/images/img_01jt8p0n1x82bwg.png"/>
+                    </div>
+                </div>
+                <div class="pricing-section">
+                    <h3 class="section-title">Harga</h3>
+                    <p class="section-subtitle">Dapatkan pengalaman trip terbaik dengan harga terjangkau</p>
+                    <div class="pricing-table">
+                        <div class="pricing-row">
+                            <span class="pricing-pax">1 Pax</span>
+                            <span class="pricing-amount">Rp 500.000</span>
+                            <span class="pricing-location">Mepo Basecamp Bambangan</span>
+                        </div>
+                        <div class="pricing-row">
+                            <span class="pricing-pax">1 Pax</span>
+                            <span class="pricing-amount">Rp 850.000</span>
+                            <span class="pricing-location">Mepo Jogja</span>
+                        </div>
+                        <div class="pricing-row">
+                            <span class="pricing-pax">1 Pax</span>
+                            <span class="pricing-amount">Rp 850.000</span>
+                            <span class="pricing-location">Mepo Jakarta</span>
+                        </div>
+                    </div>
+                    <button class="book-button" onclick="window.location.href='https://www.notion.so/22e07055c1a281d2a8bdf271f0989b71?pvs=106';">Pesan Paket Ini</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <img alt="Langit Biru Adventure" class="footer-logo" src="assets/images/img_footer_logo.png"/>
+            <div class="footer-links">
+                <div class="footer-info">
+                    Donoharjo Kec. Ngaglik Kabupaten Sleman<br/>
+                    Daerah Istimewa Yogyakarta
+                </div>
+                <nav class="footer-nav">
+                    <a href="DaftarTrip.html">Daftar Trip</a>
+                    <a href="Galeri.html">Galeri</a>
+                    <a href="TentangKami.html">Tentang Kami</a>
+                </nav>
+                <div style="display: flex; flex-direction: column; gap: 22px; align-items: flex-end;">
+                    <div class="footer-social">
+                        <span class="footer-social-text">Follow us</span>
+                        <div class="social-icons">
+                            <img alt="Social 1" class="social-icon" src="assets/images/img_svg_white_a700.svg"/>
+                            <img alt="Social 2" class="social-icon" src="assets/images/img_svg_white_a700_20x20.svg"/>
+                        </div>
+                    </div>
+                    <div class="copyright">©2025 Langit Biru Adventure</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script>
+    function toggleDropdown(element) {
+        const content = element.nextElementSibling; // Menargetkan div konten
+        const span = element.querySelector('span');
+
+        // Cek status display dari konten
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "block"; // Tampilkan konten
+            span.textContent = 'Sembunyikan';
+            element.style.backgroundColor = '#f3f4f6';
+        } else {
+            content.style.display = "none"; // Sembunyikan konten
+            span.textContent = 'Tampilkan';
+            element.style.backgroundColor = '#ffffff';
+        }
+    }
+
+    function bookTrip() {
+        alert('Redirecting to booking form...');
+    }
+
+    // Add smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

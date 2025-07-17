@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Langit Biru Adventure - Jelajahi Alam Indonesia</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #006184;
+            padding: 5px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+            border-radius: 36px;
+        }
+        
+        .nav-menu {
+            display: none;
+            gap: 34px;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .login-text {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .contact-btn {
+            background: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-btn img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 64px 16px 36px;
+            background-color: #ffffff;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 36px;
+        }
+        
+        .hero-intro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+        
+        .hero-icon {
+            width: 94px;
+            height: 94px;
+            padding-top:0px;
+            margin-top: 16px;
+        }
+        
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1b1f4d;
+            margin-bottom: 8px;
+        }
+        
+        .hero-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19px;
+            color: #6b7280;
+            max-width: 600px;
+        }
+        
+        /* Search Section */
+        .search-section {
+            background-color: #ffffff;
+            border: 1px solid #deeeff;
+            border-radius: 8px;
+            padding: 24px;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .date-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border: 1px solid #deeeff;
+            border-radius: 8px;
+            background-color: #ffffff;
+            color: #8e8e93;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .date-dropdown img {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .search-btn {
+            background-color: #006184;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 16px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background-color: #004d6b;
+        }
+        
+        .trip-cards {
+        display: flex;
+        gap: 22px;
+    }
+
+    /* Aturan utama untuk semua kartu perjalanan */
+    .trip-card {
+        width: 326px;
+        height: 419px;
+        border-radius: 8px;
+        border: 1px solid #6b7280;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        position: relative; 
+        background-color: #2d3748; 
+    }
+
+    /* CSS untuk gambar yang dijadikan background */
+    .card-background-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    /* Lapisan gradien gelap agar teks mudah dibaca */
+    .trip-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+        z-index: 2;
+    }
+
+    /* Konten teks berada di lapisan paling atas */
+    .trip-card-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 29px;
+        color: #ffffff;
+        z-index: 3;
+    }
+
+    .trip-card:hover {
+        transform: translateY(-5px);
+    }
+
+        .trip-card-1 {
+            background: linear-gradient(0deg, #000000 0%, rgba(0,0,0,0) 100%), url('assets/images/img_merbabu.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .trip-card-2 {
+            background: linear-gradient(180deg, #ffffff 0%, #020817 100%), url('assets/images/img_slamet.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .trip-title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 22px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        
+        .trip-date {
+            font-size: 16px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 20px;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        
+        .trip-price {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #b3b3b3;
+            margin-bottom: 12px;
+        }
+        
+        .trip-quota {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #ffffff;
+        }
+        
+        .trip-quota .bold {
+            font-weight: 700;
+        }
+        
+        /* Custom Request Section */
+        .custom-request {
+            background-color: #006184;
+            padding: 64px 16px;
+            margin-top: 10px;
+        }
+        
+        .custom-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        text-align: left;
+        }
+
+        .custom-header {
+        flex: 1; /* Tambahkan ini agar dorong icon ke kanan */
+        }
+
+        .request-btn-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        top: -75px; 
+        }
+
+        .request-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px; /* kasih jarak antara teks dan ikon */
+        background-color: #1e90ff;
+        color: #fff;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 14px;
+        }
+
+        .request-btn img {
+        width: 18px;
+        height: 18px;
+        }
+
+        
+        .custom-title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+        .custom-icon {
+        width: 110px;
+        height: 110px;
+        transform: translateX(65px);
+         }
+        
+        .custom-description {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #ffffff;
+            max-width: 600px;
+        }
+        
+        .request-btn {
+            background: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 100px;
+            transition: all 0.3s ease;
+        }
+        .request-btn:hover {
+            background-color: #ffffff;
+            color: #006184;
+            margin-top: 100px;
+        }
+        
+        .request-btn img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            padding: 10px 16px;
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+        
+        .footer-main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            width: 106px;
+            height: 104px;
+            border-radius: 52px;
+        }
+        
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .footer-address {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 20px;
+            color: #ffffff;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .footer-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+        }
+        
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .footer-social-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .social-icons img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .footer-copyright {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            margin-top: 16px;
+        }
+        
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 60px;
+            right: 56px;
+            width: 56px;
+            height: 56px;
+            background-color: #009b62;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chat-button img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .search-section {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .date-dropdown {
+                flex: 1;
+            }
+            
+            .trip-cards {
+                flex-direction: row;
+                gap: 30px;
+            }
+            
+            .trip-card {
+                width: 268px;
+                flex-shrink: 0;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .header {
+                padding: 20px 56px;
+            }
+            
+            .nav-menu {
+                display: flex;
+            }
+            
+            .login-text {
+                display: block;
+            }
+            
+            .contact-btn {
+                padding: 16px 28px;
+                font-size: 16px;
+            }
+            
+            .hero {
+                padding: 64px 56px 36px;
+            }
+            
+            .hero-intro {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+            }
+            
+            .hero-title {
+                font-size: 50px;
+                line-height: 61px;
+            }
+            
+            .custom-content {
+                flex-direction: row;
+                text-align: left;
+                justify-content: space-between;
+            }
+            
+            .custom-title {
+                font-size: 61px;
+                line-height: 73px;
+            }
+            
+            .footer-content {
+                padding: 0 56px;
+            }
+            
+            .footer-main {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .footer-info {
+                flex-direction: row;
+                justify-content: space-between;
+                flex: 1;
+            }
+            
+            .footer-links {
+                align-items: flex-end;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-content {
+                align-items: flex-start;
+            }
+            
+            .search-section {
+                max-width: 600px;
+                align-self: flex-start;
+                margin-left: 10px;
+            }
+            
+            .trip-cards {
+                align-self: flex-start;
+                margin-left: 10px;
+            }
+        }
+    </style>
+<script src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnurkhamid6908back.builtwithrocket.new&amp;_be=https%3A%2F%2Fapplication.rocket.new&amp;_v=0.1.5" type="module"></script>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<header class="header">
+    <div class="header-content">
+        <a href="file:///Users/berkelana/Downloads/Website_Langit_Biru_Final_Linked%20revisi/Website_Langit_Biru_Final_Linked/Website_Langit_Biru_Final_Linked/beranda.html">
+            <img alt="Langit Biru Adventure" class="logo" src="assets/images/img_whatsapp_image_2025_06_27.png"/>
+        </a>
+<nav class="nav-menu">
+<a href="DaftarTrip.html">Daftar Trip</a>
+<a class="active" href="Galeri.html">Galeri</a>
+<a href="TentangKami.html">Tentang Kami</a>
+</nav>
+<div class="header-right">
+<a class="contact-btn" href="https://wa.me/message/F2AFH3OZD2YZO1">
+<img alt="Contact" src="assets/images/img_svg.svg"/>
+                        Hubungi Kami
+                    </a>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-content">
+<div class="hero-intro">
+<img alt="Adventure Icon" class="hero-icon" src="assets/images/img_exp_3.png"/>
+<div>
+<h1 class="hero-title">Ayo Mulai Jelajahi Alam!</h1>
+<p class="hero-subtitle">
+                            Pilih tanggal keberangkatan, lalu temukan trip seru dari Langit Biru Adventure.<br/>
+                            Mau tektokan ke puncak gunung atau healing bareng teman baru? Di sini tempatnya.
+                        </p>
+</div>
+</div>
+<!-- Trip Cards -->
+<div class="trip-cards">
+    <a class="trip-card" href="OpenTripMerbabuviaSuwanting.html">
+        <img class="card-background-img" src="assets/images/467406352_1933169130512881_7701537917676327018_n.jpg">
+
+        <div class="trip-card-content">
+            <h3 class="trip-title">Open Trip Gunung<br/>Merbabu via Suwanting</h3>
+            <p class="trip-date">11 - 13 Agustus 2025</p>
+            <p class="trip-price">Start from Rp 550.000/pax</p>
+            <p class="trip-quota">Sisa kuota <span class="quota-number">9</span></p>
+        </div>
+    </a>
+
+    <a class="trip-card" href="OpenTripSlametviaBambangan.html">
+        <img class="card-background-img" src="assets/images/467495799_911561104268788_4637363868326788051_n.jpg" alt="Pemandangan Gunung Slamet via Bambangan"/>
+
+        <div class="trip-card-content">
+            <h3 class="trip-title">Open Trip Gunung Slamet via Bambangan</h3>
+            <p class="trip-date">19-20 November 2025</p>
+            <p class="trip-price">Start from Rp 500.000/pax</p>
+            <p class="trip-quota">Sisa kuota <span class="quota-number">12</span></p>
+        </div>
+    </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Custom Request Section -->
+
+</div>
+</div>
+</section>
+<section class="custom-request">
+    <div class="custom-content">
+      <div class="custom-header">
+        <h2 class="custom-title">Belum Ketemu Trip yang Pas?</h2>
+        <p class="custom-description">
+          Kamu bisa request paket sesuai jadwal dan destinasi yang kamu mau!<br />
+          Mau berangkat cuma berdua? Atau ajak satu RT? Kita bantu semua rencananya.
+        </p>
+        <div class="request-btn-wrapper">
+            <a class="request-btn" href="https://wa.me/message/F2AFH3OZD2YZO1">
+                Request Paket <img src="assets/images/img_svg_white_a700_18x18.svg" alt="Panah" />
+            </a>
+        </div>
+        <img class="custom-icon" src="assets/images/message.png" alt="Ikon Chat" />
+    </div>
+    </div>  
+  </section>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-main">
+<img alt="Langit Biru Adventure" class="footer-logo" src="assets/images/img_footer_logo.png"/>
+<div class="footer-info">
+<p class="footer-address">
+                            Donoharjo Kec. Ngaglik Kabupaten Sleman<br/>
+                            Daerah Istimewa Yogyakarta
+                        </p>
+<div class="footer-links">
+<nav class="footer-nav">
+<a href="DaftarTrip.html">Daftar Trip</a>
+<a href="Galeri.html">Galeri</a>
+<a href="TentangKami.html">Tentang Kami</a>
+</nav>
+<div class="footer-social">
+<span class="footer-social-text">Follow us</span>
+<div class="social-icons">
+<img alt="Instagram" src="assets/images/img_svg_white_a700.svg"/>
+<img alt="TikTok" src="assets/images/img_svg_20x20.svg"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="footer-copyright">©2025 Langit Biru Adventure</p>
+</div>
+</footer>
+<!-- Chat Button -->
+<button class="chat-button">
+<img alt="Live Chat" src="assets/images/img_button_live_chat.svg"/>
+</button>
+</div>
+<script>
+        // Add search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            console.log('Search button clicked');
+        });
+        
+        // Add chat button functionality
+        document.querySelector('.chat-button').addEventListener('click', function() {
+            console.log('Chat button clicked');
+        });
+        
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

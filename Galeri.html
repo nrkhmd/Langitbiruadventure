@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Galeri - Langit Biru Adventure</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.5;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #006184;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+            border-radius: 36px;
+        }
+        
+        .nav-menu {
+            display: none;
+            gap: 34px;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .login-text {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .contact-btn {
+            background: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background-color: #ffffff;
+            color: #006184;
+        }
+        
+        .contact-btn img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 42px 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-title {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1b1f4d;
+            margin-bottom: 14px;
+        }
+        
+        .gallery-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #020817;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 220/180;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #eeeeee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            padding: 32px 16px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+        
+        .footer-address {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+        
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        
+        .footer-nav a {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .footer-social span {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .footer-social img {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-social img:hover {
+            transform: scale(1.1);
+        }
+        
+        .footer-copyright {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .main-content {
+                padding: 42px 24px;
+            }
+            
+            .footer {
+                padding: 32px 24px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+            
+            .login-text {
+                display: block;
+            }
+            
+            .contact-btn {
+                font-size: 16px;
+                padding: 16px 28px;
+            }
+            
+            .gallery-title {
+                font-size: 48px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+            
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+            
+            .footer-info {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+                flex: 1;
+                margin-left: 32px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .header-content {
+                padding: 0 32px;
+            }
+            
+            .gallery-title {
+                font-size: 61px;
+                line-height: 74px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .main-content {
+                padding: 42px 32px;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .gallery-grid {
+                gap: 16px;
+            }
+        }
+    </style>
+<script src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fberkelana5157back.builtwithrocket.new&amp;_be=https%3A%2F%2Fapplication.rocket.new&amp;_v=0.1.5" type="module"></script>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="header-content">
+            <a href="file:///Users/berkelana/Downloads/Website_Langit_Biru_Final_Linked%20revisi/Website_Langit_Biru_Final_Linked/Website_Langit_Biru_Final_Linked/beranda.html">
+                <img alt="Langit Biru Adventure" class="logo" src="assets/images/img_whatsapp_image_2025_06_27.png"/>
+            </a>
+<nav class="nav-menu">
+<a href="DaftarTrip.html">Daftar Trip</a>
+<a class="active" href="Galeri.html">Galeri</a>
+<a href="TentangKami.html">Tentang Kami</a>
+</nav>
+<div class="header-right">
+<a class="contact-btn" href="https://wa.me/message/F2AFH3OZD2YZO1">
+<img alt="Contact" src="assets/images/img_svg.svg"/>
+                        Hubungi Kami
+                    </a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="main-content">
+<div class="gallery-header">
+<h1 class="gallery-title">Galeri</h1>
+<p class="gallery-subtitle">Lihat Keseruan bersama kami!</p>
+</div>
+<!-- Gallery Grid -->
+<div class="gallery-grid">
+<div class="gallery-item">
+<img alt="Adventure Photo 1" src="assets/images/img_01jt657h6t7h11c.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 2" src="assets/images/img_01jt657h6xeeg3d.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 3" src="assets/images/img_01jt657h6ykdz4j.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 4" src="assets/images/img_01jt657h707fqma.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 5" src="assets/images/img_01jt657h71jvnkh.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 6" src="assets/images/img_01jt657h725tzm9.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 7" src="assets/images/img_01jt657h738ykwc.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 8" src="assets/images/img_01jt657h742v3ee.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 9" src="assets/images/img_01jt657h758rrdz.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 10" src="assets/images/img_01jt657h77fv4vx.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 11" src="assets/images/img_01jt657h78vzacb.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 12" src="assets/images/img_01jt657h79grsxg.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 13" src="assets/images/img_01jt657h7a9n1m3.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 14" src="assets/images/img_01jt657h7cv3t9s.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 15" src="assets/images/img_01jt657h7em1nk9.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 16" src="assets/images/img_01jt657h7gapdsx.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 17" src="assets/images/img_01jt657h7h3qgqa.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 18" src="assets/images/img_01jt657h7jrzara.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 19" src="assets/images/img_01jt657h7m1fvmc.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 20" src="assets/images/img_01jt657h7nh370s.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 21" src="assets/images/img_01jt657h7p3a9bw.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 22" src="assets/images/img_01jt657h7q1z8vk.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 23" src="assets/images/img_01jt657h7rx24xx.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 24" src="assets/images/img_01jt657h7s785zh.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 25" src="assets/images/img_01jt657h7vycjty.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 26" src="assets/images/img_01jt657h7w7gc2c.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 27" src="assets/images/img_01jt657h7x6tafy.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 28" src="assets/images/img_01jt657h7y74mk2.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 29" src="assets/images/img_01jt657h7zwp2v5.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 30" src="assets/images/img_01jt657h801h1vf.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 31" src="assets/images/img_01jt657h828y374.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 32" src="assets/images/img_01jt657h832w0zt.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 33" src="assets/images/img_01jt657h84r4wyc.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 34" src="assets/images/img_01jt657h85wbkyb.png"/>
+</div>
+<div class="gallery-item">
+<img alt="Adventure Photo 35" src="assets/images/img_01jt657h86b5qnv.png"/>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-content">
+<img alt="Langit Biru Adventure" class="footer-logo" src="assets/images/img_whatsapp_image_2025_06_27_104x104.png"/>
+<div class="footer-info">
+<div class="footer-address">
+                        Donoharjo Kec. Ngaglik Kabupaten Sleman<br/>
+                        Daerah Istimewa Yogyakarta
+                    </div>
+<nav class="footer-nav">
+<a href="DaftarTrip.html">Daftar Trip</a>
+<a href="Galeri.html">Galeri</a>
+<a href="TentangKami.html">Tentang Kami</a>
+</nav>
+<div class="footer-social">
+<span>Follow us</span>
+<img alt="Social Media 1" src="assets/images/img_svg_white_a700.svg"/>
+<img alt="Social Media 2" src="assets/images/img_svg_white_a700_20x20.svg"/>
+</div>
+<div class="footer-copyright">
+                        ©2025 Langit Biru Adventure
+                    </div>
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>

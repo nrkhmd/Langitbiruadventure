@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tentang Kami - Langit Biru Adventure</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #006184;
+            padding: 16px;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+            border-radius: 36px;
+        }
+        
+        .nav-menu {
+            display: none;
+            gap: 34px;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .login-text {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .contact-btn {
+            background: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-btn img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 48px 16px;
+            margin-top: 54px;
+        }
+        
+        .about-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-title {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1b1f4d;
+            margin-bottom: 24px;
+        }
+        
+        .about-description {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22px;
+            color: #58585a;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 64px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .contact-item img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .contact-item span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #020817;
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+        
+        .feature-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 22px;
+            color: #1b1f4d;
+            margin-bottom: 16px;
+        }
+        
+        .feature-description {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #58585a;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 64px 16px;
+            background-color: #ffffff;
+        }
+        
+        .testimonials-title {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1b1f4d;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .testimonials-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            color: #58585a;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: #f9fafb;
+            padding: 22px;
+            border-radius: 8px;
+            box-shadow: 0px 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
+        }
+        
+        .testimonial-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1b1f4d;
+        }
+        
+        .rating {
+            display: flex;
+            gap: 4px;
+            margin: 12px 0;
+        }
+        
+        .star {
+            width: 16px;
+            height: 16px;
+            color: #fbbf24;
+        }
+        
+        .testimonial-text {
+            font-size: 14px;
+            font-weight: 400;
+            color: #58585a;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            padding: 40px 16px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .footer-main {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+        }
+        
+        .footer-address {
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 20px;
+        }
+        
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .footer-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .footer-social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-links img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .footer-copyright {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background-color: #009b62;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        .chat-button img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .header {
+                padding: 20px 32px;
+            }
+            
+            .nav-menu {
+                display: flex;
+            }
+            
+            .login-text {
+                display: block;
+            }
+            
+            .contact-btn {
+                padding: 16px 28px;
+                font-size: 16px;
+            }
+            
+            .main-content {
+                padding: 64px 32px;
+            }
+            
+            .about-title {
+                font-size: 48px;
+            }
+            
+            .contact-info {
+                align-items: flex-start;
+            }
+            
+            .contact-item {
+                justify-content: flex-start;
+            }
+            
+            .testimonials-title {
+                font-size: 48px;
+            }
+            
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .footer-main {
+                flex-direction: row;
+                align-items: center;
+                gap: 40px;
+            }
+            
+            .footer-nav {
+                flex-direction: row;
+                gap: 32px;
+            }
+            
+            .footer-social {
+                align-items: flex-end;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 52px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .about-title {
+                font-size: 61px;
+                line-height: 74px;
+            }
+            
+            .testimonials-title {
+                font-size: 61px;
+                line-height: 74px;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .main-content {
+                padding: 80px 40px;
+            }
+        }
+    </style>
+<script src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fnurkhamid6908back.builtwithrocket.new&amp;_be=https%3A%2F%2Fapplication.rocket.new&amp;_v=0.1.5" type="module"></script>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<header class="header">
+    <div class="header-content">
+        <a href="file:///Users/berkelana/Downloads/Website_Langit_Biru_Final_Linked%20revisi/Website_Langit_Biru_Final_Linked/Website_Langit_Biru_Final_Linked/beranda.html">
+            <img alt="Langit Biru Adventure" class="logo" src="assets/images/img_whatsapp_image_2025_06_27.png"/>
+        </a>
+<nav class="nav-menu">
+<a href="DaftarTrip.html">Daftar Trip</a>
+<a href="Galeri.html">Galeri</a>
+<a href="TentangKami.html">Tentang Kami</a>
+</nav>
+<div class="header-actions">
+<a class="contact-btn" href="https://wa.me/message/F2AFH3OZD2YZO1">
+<img alt="Contact" src="assets/images/img_svg.svg"/>
+                        Hubungi Kami
+                    </a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="main-content">
+<section class="about-section">
+<h1 class="about-title">Tentang Kami</h1>
+<div class="about-description">
+<p>@langitbiruadventure adalah platform penyedia layanan open trip pendakian gunung di berbagai penjuru Indonesia. Berdiri sejak 2023, kami hadir sebagai wadah bagi para pecinta alam, solo traveler, hingga pendaki pemula yang ingin menjelajah gunung dengan aman, nyaman, dan menyenangkan.</p>
+<p>Dengan puluhan trip yang sukses digelar ke gunung-gunung populer seperti Merbabu, Rinjani, Prau, Sindoro, Slamet, dan lainnya, Langit Biru Adventure berkomitmen untuk menghadirkan perjalanan yang tak hanya seru, tapi juga terorganisir dengan baik.</p>
+<p>Kami tidak hanya mengurus logistik dan perizinan, tapi juga menyediakan dokumentasi foto &amp; video profesional, serta tour leader dan guide berpengalaman yang siap mendampingi dari titik kumpul hingga puncak.</p>
+<p>Selain itu, kami memahami pentingnya budget-friendly trip. Maka dari itu, kami selalu mengupayakan harga yang terjangkau tanpa mengorbankan kualitas layanan. Bersama @langitbiruadventure, setiap pendakian bukan sekadar naik gunung—tapi tentang membangun kenangan, relasi baru, dan cerita yang akan kamu bawa pulang.</p>
+</div>
+<div class="contact-info">
+<div class="contact-item">
+<img alt="Phone" src="assets/images/img_vector.svg"/>
+<span>+62816581668</span>
+</div>
+<div class="contact-item">
+<img alt="Instagram" src="assets/images/img_svg_blue_800.svg"/>
+<span>@langitbiruadventure</span>
+</div>
+<div class="contact-item">
+<img alt="TikTok" src="assets/images/img_svg_blue_800_20x20.svg"/>
+<span>@langitbiruadventure</span>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="features-grid">
+<div class="feature-card">
+<img alt="Trip Options" class="feature-icon" src="assets/images/img_home_1_1.png"/>
+<h3 class="feature-title">Pilihan Trip Seru dan Beragam</h3>
+<p class="feature-description">Nikmati pengalaman traveling terbaik ke berbagai destinasi alam Indonesia bersama Langit Biru. Sudah dipercaya ratusan peserta open trip &amp; private trip.</p>
+</div>
+<div class="feature-card">
+<img alt="Experienced Team" class="feature-icon" src="assets/images/img_home_1_2.png"/>
+<h3 class="feature-title">Tim Berpengalaman &amp; Ramah</h3>
+<p class="feature-description">Mulai dari tour leader, driver jeep, hingga fotografer andalan – semua siap mendampingi petualanganmu dengan profesional dan penuh kehangatan.</p>
+</div>
+<div class="feature-card">
+<img alt="Flexible Schedule" class="feature-icon" src="assets/images/img_home_1_3.png"/>
+<h3 class="feature-title">Jadwal Fleksibel &amp; Konsultasi Gratis</h3>
+<p class="feature-description">Bingung atur waktu? Tenang! Kamu bisa konsultasi jadwal dulu, dan kami bantu sesuaikan itinerary sesuai kebutuhan kamu.</p>
+</div>
+<div class="feature-card">
+<img alt="All Group Types" class="feature-icon" src="assets/images/img_home_1_4.png"/>
+<h3 class="feature-title">Cocok untuk Solo, Couple, atau Rombongan</h3>
+<p class="feature-description">Mau healing sendiri? Liburan bareng pacar? Atau seru-seruan bareng geng kamu? Langit Biru punya paketnya!</p>
+</div>
+<div class="feature-card">
+<img alt="Affordable Price" class="feature-icon" src="assets/images/img_home_1_5.png"/>
+<h3 class="feature-title">Harga Ramah Kantong, Pengalaman Maksimal</h3>
+<p class="feature-description">Kami percaya petualangan seru nggak harus mahal. Semua paket trip kami disusun sebaik mungkin dengan harga bersahabat.</p>
+</div>
+</section>
+</main>
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+<h2 class="testimonials-title">Masih Tunggu Apa Lagi?</h2>
+<p class="testimonials-subtitle">Lihat sendiri nih feedback tentang kami</p>
+<div class="testimonials-grid">
+    <div class="testimonial-card">
+        <div class="testimonial-header">
+            <img alt="Shabella Aksa Mudi" class="testimonial-avatar" src="assets/images/img_acg8oclja1qkgv5b3d6ifh0ixoijv3qid5cyd3qe9xeebb6usbas96c.png"/>
+            <h4 class="testimonial-name">Zulfa Bella Mudi</h4>
+        </div>
+        <div class="rating">
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+        </div>
+        <p class="testimonial-text">Rekomendasi banget buat yang belum pernah naik Gunung</p>
+    </div>
+    <div class="testimonial-card">
+        <div class="testimonial-header">
+            <img alt="Surya Budi" class="testimonial-avatar" src="assets/images/img_acg8oclskhrs6m8cltizla2mnjrarijqggueddtov22mhmppmnbig4qs96c.png"/>
+            <h4 class="testimonial-name">Arya Budi</h4>
+        </div>
+        <div class="rating">
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800_16x16.svg"/>
+        </div>
+        <p class="testimonial-text">Guide nya berpengalaman dan asik</p>
+    </div>
+    <div class="testimonial-card">
+        <div class="testimonial-header">
+            <img alt="Rizkia El R" class="testimonial-avatar" src="assets/images/img_acg8oclskhrs6m8cltizla2mnjrarijqggueddtov22mhmppmnbig4qs96c.png"/>
+            <h4 class="testimonial-name">Andri El R</h4>
+        </div>
+        <div class="rating">
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+            <img alt="Star" src="assets/images/img_svg_yellow_800.svg"/>
+        </div>
+        <p class="testimonial-text">Itenerary nya tersusun rapih dan On time</p>
+    </div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-main">
+<img alt="Langit Biru Adventure" class="footer-logo" src="assets/images/img_footer_logo.png"/>
+<p class="footer-address">Donoharjo Kec. Ngaglik Kabupaten Sleman<br/>Daerah Istimewa Yogyakarta</p>
+<nav class="footer-nav">
+<a href="DaftarTrip.html">Daftar Trip</a>
+<a href="Galeri.html">Galeri</a>
+<a href="TentangKami.html">Tentang Kami</a>
+</nav>
+</div>
+<div class="footer-social">
+<div style="display: flex; align-items: center; gap: 12px; color: #ffffff; font-size: 14px; font-weight: 600;">
+<span>Follow us</span>
+<div class="social-links">
+<img alt="Instagram" src="assets/images/img_svg_white_a700.svg"/>
+<img alt="TikTok" src="assets/images/img_svg_20x20.svg"/>
+</div>
+</div>
+<p class="footer-copyright">©2025 Langit Biru Adventure</p>
+</div>
+</div>
+</footer>
+<!-- Chat Button -->
+<button class="chat-button">
+<img alt="Live Chat" src="assets/images/img_button_live_chat.svg"/>
+</button>
+</div>
+</body>
+</html>
